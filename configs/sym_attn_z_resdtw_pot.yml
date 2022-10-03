@@ -1,0 +1,30 @@
+MODEL:
+  ENCODER: SymmetricalDualCRNN  #  TODO, support optinal encoder and decoder
+  DECODER: RNN
+  BIDIRECTION: True
+  AttentionEN: True
+  DECODE_WITHOUT_Z: False
+NUM_GPUS: 1  # TODO, support multi GPUs
+SOLVER:
+  BASE_LR: 0.0001
+  MAX_ITER: 4000000
+  TYPE: Adam  # TODO, support optional optimizer
+  GRAD_L2_CLIP: 0.2
+  SDTW: True
+  ABS_DTW: False
+TRAIN:
+  DATASET: train
+  PTS_LOSS_TYPE: 'l2_sqrt' # 'l1' | 'l2' | 'l2_sqrt'
+  IMS_PER_BATCH: 128
+  SNAPSHOT_BEGIN: 500
+  SNAPSHOT_ITERS: 1000
+  IMG_H: 64
+  IMG_W: 64
+TEST:
+  DATASET: test
+  IMG_H: 64
+  IMG_W: 64
+DATA_LOADER:
+  NUM_THREADS: 24
+  CONCAT_GRID: True
+  TYPE: PotDataset
